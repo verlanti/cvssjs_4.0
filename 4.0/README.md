@@ -4,7 +4,7 @@ CVSS (Common Vulnerability Scoring System) Calculator
 
 <a href="http://cvssjs.github.io/cvssjs">Standalone Calculator</a>
 
-CVSSjs Version 0.3.1 beta
+CVSSjs Version 4.0 beta
 
 Usage:
 
@@ -24,7 +24,7 @@ Usage:
                 }
                 
     // set a vector
-    c.set('CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:L');
+    c.set('CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:L/SC:H/SI:L/SA:L');
     
     // it is also backwards compatible with CVSS v2 vectors, 
     // buts only sets the parameters that can be set without ambiguity.
@@ -33,8 +33,8 @@ Usage:
     //get the value
     c.get() returns an object like:
       {
-        score: 4.3,
-        vector: 'CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:L'
+        score: 5.1,
+        vector: 'CVSS:4.0/AV:L/AC:L/AT:P/PR:N/UI:N/VC:L/VI:L/VA:L/SC:H/SI:L/SA:L'
       }
 
 

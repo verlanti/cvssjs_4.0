@@ -555,155 +555,159 @@ var CVSS = function (id, options) {
         AV: {
             N: {
                 l: 'Network',
-                d: "<b>Worst:</b> The vulnerable component is bound to the network stack and the set of possible attackers extends beyond the other options listed below, up to and including the entire Internet. Such a vulnerability is often termed “remotely exploitable” and can be thought of as an attack being exploitable at the protocol level one or more network hops away (e.g., across one or more routers)."
+                d: "<b>Worst:</b> The vulnerable system is bound to the network stack and the set of possible attackers extends beyond the other options listed below, up to and including the entire Internet. Such a vulnerability is often termed “remotely exploitable” and can be thought of as an attack being exploitable at the protocol level one or more network hops away (e.g., across one or more routers)."
             },
             A: {
                 l: 'Adjacent',
-                d: "<b>Worse:</b> The vulnerable component is bound to the network stack, but the attack is limited at the protocol level to a logically adjacent topology. This can mean an attack must be launched from the same shared physical (e.g., Bluetooth or IEEE 802.11) or logical (e.g., local IP subnet) network, or from within a secure or otherwise limited administrative domain (e.g., MPLS, secure VPN to an administrative network zone). One example of an Adjacent attack would be an ARP (IPv4) or neighbor discovery (IPv6) flood leading to a denial of service on the local LAN segment."
+                d: "<b>Worse:</b> The vulnerable system is bound to a protocol stack, but the attack is limited at the protocol level to a logically adjacent topology. This can mean an attack must be launched from the same shared proximity (e.g., Bluetooth, NFC, or IEEE 802.11) or logical network (e.g., local IP subnet), or from within a secure or otherwise limited administrative domain (e.g., MPLS, secure VPN within an administrative network zone)."
             },
             L: {
                 l: 'Local',
-                d: "<b>Bad:</b> The vulnerable component is not bound to the network stack and the attacker’s path is via read/write/execute capabilities. Either: <ul><li>the attacker exploits the vulnerability by accessing the target system locally (e.g., keyboard, console), or remotely (e.g., SSH);</li><li>or the attacker relies on User Interaction by another person to perform actions required to exploit the vulnerability (e.g., using social engineering techniques to trick a legitimate user into opening a malicious document).</li></ul>"
+                d: "<b>Bad:</b> The vulnerable system is not bound to the network stack and the attacker’s path is via read/write/execute capabilities. Either the attacker exploits the vulnerability by accessing the target system locally (e.g., keyboard, console), or through terminal emulation (e.g., SSH); or the attacker relies on User Interaction by another person to perform actions required to exploit the vulnerability (e.g., using social engineering techniques to trick a legitimate user into opening a malicious document)."
             },
             P: {
                 l: 'Physical',
-                d: "<b>Bad:</b> The attack requires the attacker to physically touch or manipulate the vulnerable component. Physical interaction may be brief (e.g., evil maid attack) or persistent. An example of such an attack is a cold boot attack in which an attacker gains access to disk encryption keys after physically accessing the target system. Other examples include peripheral attacks via FireWire/USB Direct Memory Access (DMA)."
+                d: "<b>Bad:</b> The attack requires the attacker to physically touch or manipulate the vulnerable system. Physical interaction may be brief (e.g., evil maid attack) or persistent."
             }
         },
         AC: {
             L: {
                 l: 'Low',
-                d: "<b>Worst:</b> Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success when attacking the vulnerable component."
+                d: "<b>Worst:</b> The attacker must take no measurable action to exploit the vulnerability. The attack requires no target-specific circumvention to exploit the vulnerability. An attacker can expect repeatable success against the vulnerable system."
             },
             H: {
                 l: 'High',
-                d: "<b>Bad:</b> A successful attack depends on conditions beyond the attacker's control. That is, a successful attack cannot be accomplished at will, but requires the attacker to invest in some measurable amount of effort in preparation or execution against the vulnerable component before a successful attack can be expected."
+                d: "<b>Bad:</b> The successful attack depends on the evasion or circumvention of security-enhancing techniques in place that would otherwise hinder the attack. These include: Evasion of exploit mitigation techniques, for example, circumvention of address space randomization (ASLR) or data execution prevention (DEP) must be performed for the attack to be successful; Obtaining target-specific secrets. The attacker must gather some target-specific secret before the attack can be successful. A secret is any piece of information that cannot be obtained through any amount of reconnaissance. To obtain the secret the attacker must perform additional attacks or break otherwise secure measures (e.g. knowledge of a secret key may be needed to break a crypto channel). This operation must be performed for each attacked target."
             }
         },
         AT: {
             N: {
                 l: 'None',
-                d: ""
+                d: "<b>Worst:</b> The successful attack does not depend on the deployment and execution conditions of the vulnerable system. The attacker can expect to be able to reach the vulnerability and execute the exploit under all or most instances of the vulnerability."
             },
             P: {
                 l: 'Present',
-                d: ""
+                d: "<b>Bad:</b> "
             }
         },
         PR: {
             N: {
                 l: 'None',
-                d: "<b>Worst:</b> The attacker is unauthorized prior to attack, and therefore does not require any access to settings or files of the the vulnerable system to carry out an attack."
+                d: "<b>Worst:</b> The attacker is unauthorized prior to attack, and therefore does not require any access to settings or files of the vulnerable system to carry out an attack."
             },
             L: {
                 l: 'Low',
-                d: "<b>Worse</b> The attacker requires privileges that provide basic user capabilities that could normally affect only settings and files owned by a user. Alternatively, an attacker with Low privileges has the ability to access only non-sensitive resources."
+                d: "<b>Worse</b> The attacker requires privileges that provide basic capabilities that are typically limited to settings and resources owned by a single low-privileged user. Alternatively, an attacker with Low privileges has the ability to access only non-sensitive resources."
             },
             H: {
                 l: 'High',
-                d: "<b>Bad:</b> The attacker requires privileges that provide significant (e.g., administrative) control over the vulnerable component allowing access to component-wide settings and files."
+                d: "<b>Bad:</b> The attacker requires privileges that provide significant (e.g., administrative) control over the vulnerable system allowing full access to the vulnerable system’s settings and files."
             }
         },
         UI: {
             N: {
                 l: 'None',
-                d: "<b>Worst:</b> The vulnerable system can be exploited without interaction from any user."
+                d: "<b>Worst:</b> The vulnerable system can be exploited without interaction from any human user, other than the attacker."
             },
             P: {
                 l: 'Passive',
-                d: ""
+                d: "<b>Worse</b> Successful exploitation of this vulnerability requires limited interaction by the targeted user with the vulnerable system and the attacker’s payload. These interactions would be considered involuntary and do not require that the user actively subvert protections built into the vulnerable system."
             },
             A: {
                 l: 'Active',
-                d: ""
+                d: "<b>Bad:</b> Successful exploitation of this vulnerability requires a targeted user to perform specific, conscious interactions with the vulnerable system and the attacker’s payload, or the user’s interactions would actively subvert protection mechanisms which would lead to exploitation of the vulnerability."
             }
         },
         VC: {
             H: {
                 l: 'High',
-                d: "<b>Worst:</b> There is a total loss of confidentiality, resulting in all resources within the impacted component being divulged to the attacker. Alternatively, access to only some restricted information is obtained, but the disclosed information presents a direct, serious impact. For example, an attacker steals the administrator's password, or private encryption keys of a web server."
+                d: "<b>Worst:</b> There is a total loss of confidentiality, resulting in all information within the Vulnerable System being divulged to the attacker. Alternatively, access to only some restricted information is obtained, but the disclosed information presents a direct, serious impact. For example, an attacker steals the administrator's password, or private encryption keys of a web server."
             },
             L: {
                 l: 'Low',
-                d: "<b>Bad:</b> There is some loss of confidentiality. Access to some restricted information is obtained, but the attacker does not have control over what information is obtained, or the amount or kind of loss is limited. The information disclosure does not cause a direct, serious loss to the impacted component."
+                d: "<b>Bad:</b> There is some loss of confidentiality. Access to some restricted information is obtained, but the attacker does not have control over what information is obtained, or the amount or kind of loss is limited. The information disclosure does not cause a direct, serious loss to the Vulnerable System."
             },
             N: {
                 l: 'None',
-                d: "<b>Good:</b> There is no loss of confidentiality within the impacted component."
+                d: "<b>Good:</b> There is no loss of confidentiality within the Vulnerable System."
             }
         },
         VI: {
             H: {
                 l: 'High',
-                d: "<b>Worst:</b> There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the impacted component. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the impacted component."
+                d: "<b>Worst:</b> There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the vulnerable system. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the vulnerable system."
             },
             L: {
                 l: 'Low',
-                d: "<b>Bad:</b> Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact on the impacted component."
+                d: "<b>Bad:</b> Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Vulnerable System."
             },
             N: {
                 l: 'None',
-                d: "<b>Good:</b> There is no loss of integrity within the impacted component."
+                d: "<b>Good:</b> There is no loss of integrity within the Vulnerable System."
             }
         },
         VA: {
             H: {
                 l: 'High',
-                d: "<b>Worst:</b> There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the impacted component; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed). Alternatively, the attacker has the ability to deny some availability, but the loss of availability presents a direct, serious consequence to the impacted component (e.g., the attacker cannot disrupt existing connections, but can prevent new connections; the attacker can repeatedly exploit a vulnerability that, in each instance of a successful attack, leaks a only small amount of memory, but after repeated exploitation causes a service to become completely unavailable)."
+                d: "<b>Worst:</b> There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Vulnerable System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed). Alternatively, the attacker has the ability to deny some availability, but the loss of availability presents a direct, serious consequence to the Vulnerable System (e.g., the attacker cannot disrupt existing connections, but can prevent new connections; the attacker can repeatedly exploit a vulnerability that, in each instance of a successful attack, leaks a only small amount of memory, but after repeated exploitation causes a service to become completely unavailable)."
             },
             L: {
                 l: 'Low',
-                d: "<b>Bad:</b> Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users. The resources in the impacted component are either partially available all of the time, or fully available only some of the time, but overall there is no direct, serious consequence to the impacted component."
+                d: "<b>Bad:</b> Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users. The resources in the Vulnerable System are either partially available all of the time, or fully available only some of the time, but overall there is no direct, serious consequence to the Vulnerable System."
             },
             N: {
                 l: 'None',
-                d: "<b>Good:</b> There is no impact to availability within the impacted component."
+                d: "<b>Good:</b> There is no impact to availability within the Vulnerable System."
             }
         },
         SC: {
             H: {
                 l: 'High',
-                d: "<b>Worst:</b> There is a total loss of confidentiality, resulting in all resources within the impacted component being divulged to the attacker. Alternatively, access to only some restricted information is obtained, but the disclosed information presents a direct, serious impact. For example, an attacker steals the administrator's password, or private encryption keys of a web server."
+                d: "<b>Worst:</b> There is a total loss of confidentiality, resulting in all resources within the Subsequent System being divulged to the attacker. Alternatively, access to only some restricted information is obtained, but the disclosed information presents a direct, serious impact. For example, an attacker steals the administrator's password, or private encryption keys of a web server."
             },
             L: {
                 l: 'Low',
-                d: "<b>Bad:</b> There is some loss of confidentiality. Access to some restricted information is obtained, but the attacker does not have control over what information is obtained, or the amount or kind of loss is limited. The information disclosure does not cause a direct, serious loss to the impacted component."
+                d: "<b>Bad:</b> There is some loss of confidentiality. Access to some restricted information is obtained, but the attacker does not have control over what information is obtained, or the amount or kind of loss is limited. The information disclosure does not cause a direct, serious loss to the Subsequent System."
             },
             N: {
                 l: 'None',
-                d: "<b>Good:</b> There is no loss of confidentiality within the impacted component."
+                d: "<b>Good:</b> There is no loss of confidentiality within the Subsequent System or all confidentiality impact is constrained to the Vulnerable System."
             }
         },
         SI: {
             H: {
                 l: 'High',
-                d: "<b>Worst:</b> There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the impacted component. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the impacted component."
+                d: "<b>Worst:</b> There is a total loss of integrity, or a complete loss of protection. For example, the attacker is able to modify any/all files protected by the Subsequent System. Alternatively, only some files can be modified, but malicious modification would present a direct, serious consequence to the Subsequent System."
             },
             L: {
                 l: 'Low',
-                d: "<b>Bad:</b> Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact on the impacted component."
+                d: "<b>Bad:</b> Modification of data is possible, but the attacker does not have control over the consequence of a modification, or the amount of modification is limited. The data modification does not have a direct, serious impact to the Subsequent System."
             },
             N: {
                 l: 'None',
-                d: "<b>Good:</b> There is no loss of integrity within the impacted component."
+                d: "<b>Good:</b> There is no loss of integrity within the Subsequent System or all integrity impact is constrained to the Vulnerable System."
             }
         },
         SA: {
             H: {
                 l: 'High',
-                d: "<b>Worst:</b> There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the impacted component; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed). Alternatively, the attacker has the ability to deny some availability, but the loss of availability presents a direct, serious consequence to the impacted component (e.g., the attacker cannot disrupt existing connections, but can prevent new connections; the attacker can repeatedly exploit a vulnerability that, in each instance of a successful attack, leaks a only small amount of memory, but after repeated exploitation causes a service to become completely unavailable)."
+                d: "<b>Worst:</b> There is a total loss of availability, resulting in the attacker being able to fully deny access to resources in the Subsequent System; this loss is either sustained (while the attacker continues to deliver the attack) or persistent (the condition persists even after the attack has completed). Alternatively, the attacker has the ability to deny some availability, but the loss of availability presents a direct, serious consequence to the Subsequent System (e.g., the attacker cannot disrupt existing connections, but can prevent new connections; the attacker can repeatedly exploit a vulnerability that, in each instance of a successful attack, leaks a only small amount of memory, but after repeated exploitation causes a service to become completely unavailable)."
             },
             L: {
                 l: 'Low',
-                d: "<b>Bad:</b> Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users. The resources in the impacted component are either partially available all of the time, or fully available only some of the time, but overall there is no direct, serious consequence to the impacted component."
+                d: "<b>Bad:</b> Performance is reduced or there are interruptions in resource availability. Even if repeated exploitation of the vulnerability is possible, the attacker does not have the ability to completely deny service to legitimate users. The resources in the Subsequent System are either partially available all of the time, or fully available only some of the time, but overall there is no direct, serious consequence to the Subsequent System."
             },
             N: {
                 l: 'None',
-                d: "<b>Good:</b> There is no impact to availability within the impacted component."
+                d: "<b>Good:</b> There is no impact to availability within the Subsequent System or all availability impact is constrained to the Vulnerable System."
             }
         }
     };
-    
+    this.bm_rows = {
+        1: ["AV", "AC", "AT", "PR", "UI"],
+        2: ["VC", "VI", "VA"],
+        3: ["SC", "SI", "SA"]
+    }
     this.bme = {};
     this.bmgReg = {
         AV: 'NALP',
@@ -719,46 +723,67 @@ var CVSS = function (id, options) {
         SA: 'HLN'
     };
 
-    var s, f, dl, g, dd, l;
+    var s, f, dl, g, dd, l, row;
     this.el = document.getElementById(id);
     this.el.appendChild(s = e('style'));
     s.innerHTML = '';
     this.el.appendChild(f = e('form'));
     f.className = 'cvssjs';
     this.calc = f;
-    for (g in this.bg) {
-        f.appendChild(dl = e('dl'));
-        dl.setAttribute('class', g);
-        var dt = e('dt');
-        dt.innerHTML = this.bg[g];
-        dl.appendChild(dt);
-        for (s in this.bm[g]) {
-            dd = e('dd');
-            dl.appendChild(dd);
-            var inp = e('input');
-            inp.setAttribute('name', g);
-            inp.setAttribute('value', s);
-            inp.setAttribute('id', id + g + s);
-            inp.setAttribute('class', g + s);
-            //inp.setAttribute('ontouchstart', '');
-            inp.setAttribute('type', 'radio');
-            this.bme[g + s] = inp;
-            var me = this;
-            inp.onchange = function () {
-            /* modificare qui */
-                me.setMetric(this);
-            };
-            dd.appendChild(inp);
-            l = e('label');
-            dd.appendChild(l);
-            l.setAttribute('for', id + g + s);
-            l.appendChild(e('i')).setAttribute('class', g + s);
-            l.appendChild(document.createTextNode(this.bm[g][s].l + ' '));
-            dd.appendChild(e('small')).innerHTML = this.bm[g][s].d;
+
+    for (var key in this.bm_rows){
+        var bm_keys = this.bm_rows[key];
+
+        f.appendChild(row = e('div'));
+        row.className = 'dl-row'
+
+        for (var i=0; i < bm_keys.length; i++) {
+
+            var bm_key = bm_keys[i]
+
+            if (this.bg.hasOwnProperty(bm_key)) {
+                g = bm_key;
+                row.appendChild(dl = e('dl'));
+                dl.setAttribute('class', g);
+                var dt = e('dt');
+                dt.innerHTML = this.bg[g];
+                dl.appendChild(dt);
+
+                for (s in this.bm[g]) {
+                    dd = e('dd');
+                    dl.appendChild(dd);
+                    var inp = e('input');
+                    inp.setAttribute('name', g);
+                    inp.setAttribute('value', s);
+                    inp.setAttribute('id', id + g + s);
+                    inp.setAttribute('class', g + s);
+                    //inp.setAttribute('ontouchstart', '');
+                    inp.setAttribute('type', 'radio');
+                    this.bme[g + s] = inp;
+                    var me = this;
+                    inp.onchange = function () {
+                    /* modificare qui */
+                        me.setMetric(this);
+                    };
+                    dd.appendChild(inp);
+                    l = e('label');
+                    dd.appendChild(l);
+                    l.setAttribute('for', id + g + s);
+                    l.appendChild(e('i')).setAttribute('class', g + s);
+                    l.appendChild(document.createTextNode(this.bm[g][s].l + ' '));
+                    dd.appendChild(e('small')).innerHTML = this.bm[g][s].d;
+                }
+
+            }
+
         }
+
     }
+
     //f.appendChild(e('hr'));
-    f.appendChild(dl = e('dl'));
+    f.appendChild(row = e('div'));
+    row.className = 'dl-row'
+    row.appendChild(dl = e('dl'));
     dl.innerHTML = '<dt>Severity&sdot;Score&sdot;Vector</dt>';
     dd = e('dd');
     dl.appendChild(dd);
@@ -842,7 +867,8 @@ CVSS.prototype.calculate = function () {
             // metricWeight[p] = Weight[p][val[p]];
         }
     } catch (err) {
-        return err; // TODO: need to catch and return sensible error value & do a better job of specifying *which* parm is at fault.
+    // TODO: need to catch and return sensible error value & do a better job of specifying *which* parm is at fault.
+        return err;
     }
 
     cvssSelected = val;
@@ -1111,7 +1137,7 @@ CVSS.prototype.setMetric = function(a) {
     if (/AV:.\/AC:.\/AT:.\/PR:.\/UI:.\/VC:.\/VI:.\/VA:.\/SC:.\/SI:.\/SA:./.test(vectorString)) {} else {
         vectorString = 'AV:_/AC:_/AT:_/PR:_/UI:_/VC:_/VI:_/VA:_/SC:_/SI:_/SA:_';
     }
-    //e("E" + a.id).checked = true;
+    // e("E" + a.id).checked = true;
     var newVec = vectorString.replace(new RegExp('\\b' + a.name + ':.'), a.name + ':' + a.value);
     this.set(newVec);
 };
@@ -1125,10 +1151,10 @@ CVSS.prototype.set = function(vec) {
             var check = match[0].replace(':', '');
             this.bme[check].checked = true;
             newVec = newVec + sep + match[0];
-        } else if ((m in {C:'', I:'', A:''}) && (match = (new RegExp('\\b(' + m + ':C)')).exec(vec)) !== null) {
+        /*}  else if ((m in {C:'', I:'', A:''})) && (match = (new RegExp('\\b(' + m + ':C)')).exec(vec)) !== null) {
             // compatibility with v2 only for CIA:C
             this.bme[m + 'H'].checked = true;
-            newVec = newVec + sep + m + ':H';
+            newVec = newVec + sep + m + ':H'; */
         } else {
             newVec = newVec + sep + m + ':_';
             for (var j in this.bm[m]) {

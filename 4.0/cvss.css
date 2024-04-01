@@ -338,3 +338,23 @@
     display: none;
     font-size: x-small;
 }
+
+.dl-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.dl-row dl {
+    flex: auto; /* Assegna flessibilità a tutti gli elementi dl */
+    min-width: 100px; /* Imposta una larghezza minima per gli elementi dl */
+    max-width: 1000px; /* Imposta una larghezza massima per gli elementi dl */
+}
+
+@media (max-width: 768px) {
+    .dl-row dl {
+        min-width: 50px; /* Modifica la larghezza minima per dispositivi di larghezza inferiore */
+        max-width: 500px; /* Modifica la larghezza massima per dispositivi di larghezza inferiore */
+    }
+}
+
